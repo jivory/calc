@@ -1,0 +1,40 @@
+<% @week.each do |date| %>
+  <h1> 
+  	<% if date.strftime('%Y-%m-%d') == @today %> Today
+  	<% elsif date.strftime('%Y-%m-%d') == @yesterday %> Yesterday
+  	<% else%> <%=date.strftime('%D')%> 
+  	<% end %>
+  	= <%= total_calories(date - 1.day, date) %> <%= link_to "+", new_meal_path(value: date.strftime('%Y-%m-%d'))%> 
+  </h1>
+    <% @meal_times.each do |time| %>
+	  	<h2> <%= time.capitalize %> </h2>
+	  	<h3> <%= hidden_field_tag @count = sum_meal_types("meal", date, time) %>
+	  	 		<%= @count > 0 ? "#{pluralize(@count , "Meal")} = #{@sum_calories}" : nil%> </h3>
+			<% @meals_meals.each do |meal| %>
+				<% if meal.day_of_meal.strftime('%Y-%m-%d') == date.strftime('%Y-%m-%d') && meal.meal_time == time %>
+				  <%= link_to meal.meal_type.capitalize, meal %> <%= meal.calories %> 
+				  <%= link_to "Edit", edit_meal_path(meal) %> <%= link_to "Delete", meal, method: :delete %><br>			  
+				<% end %>
+			<% end %>
+			<h3> <%= hidden_field_tag @count = sum_meal_types("drink", date, time) %>
+	  	 		<%= @count > 0 ? "#{pluralize(@count , "Drink")} = #{@sum_calories}" : nil%> </h3>
+			<% @meals_drinks.each do |meal| %>
+				<% if meal.day_of_meal.strftime('%Y-%m-%d') == date.strftime('%Y-%m-%d') && meal.meal_time == time %>
+				  <%= link_to meal.meal_type.capitalize, meal %> <%= meal.calories %> 
+				  <%= link_to "Edit", edit_meal_path(meal) %> <%= link_to "Delete", meal, method: :delete %><br>			  
+				<% end %>
+			<% end %>
+			<h3> <%= hidden_field_tag @count = sum_meal_types("snack", date, time) %>
+	  	 		<%= @count > 0 ? "#{pluralize(@count , "Snack")} = #{@sum_calories}"  : nil%> </h3>
+			<% @meals_snacks.each do |meal| %>
+				<% if meal.day_of_meal.strftime('%Y-%m-%d') == date.strftime('%Y-%m-%d') && meal.meal_time == time %>
+				  <%= link_to meal.meal_type.capitalize, meal %> <%= meal.calories %> 
+				  <%= link_to "Edit", edit_meal_path(meal) %> <%= link_to "Delete", meal, method: :delete %><br>			  
+				<% end %>
+			<% end %>
+		<% end %>
+<% end %>
+
+
+<!--make links autoload the date that is next to the link -->
+<!--make partial of repeated code and call partial -->

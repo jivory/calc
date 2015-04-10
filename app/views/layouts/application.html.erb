@@ -7,6 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render "layouts/header" %><br><br>
+  	<% flash.each do |message_type, message| %>
+       <%= content_tag(:div, message, class: "alert alert-#{message_type}") %> 
+    <% end %>
 
 <%= yield %>
 

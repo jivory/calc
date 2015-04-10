@@ -1,2 +1,0 @@
-class TodayController < ApplicationController
-end

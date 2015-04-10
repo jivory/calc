@@ -1,0 +1,11 @@
+See one of yo' meals!
+
+<h1> <%= @meal.meal_time %> </h1>
+Type: <%= @meal.meal_type %><br>
+Calories: <%= @meal.calories %><br>
+Date: <%= @meal.day_of_meal %><br><br>
+
+
+<%= link_to "Edit", edit_meal_path(@meal, data: "show") %> <%= link_to "Delete", @meal, method: :delete %>
+
+<%= current_user.meals.find_by(id: params[:id]).id %>  <%= @meal.id %> 
