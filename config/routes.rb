@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
   devise_for :users
+  match '/users/:id/updates' => 'users#updates', via: [:patch], :as => :updates_user
   root 'welcome#home'
 
   get     'help'      =>      'welcome#help'
 
-  resources :meals
+  resources :meals 
+  resources :goals
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

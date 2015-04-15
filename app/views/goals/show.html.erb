@@ -1,0 +1,7 @@
+Goal Name: <%= @goal.goal_name %> <br>
+Goal: <%= @goal.goal_type.capitalize %> <%= @gain_lose == 0 ? nil : "#{@gain_lose} pounds" %> <br>
+Current Weight: <%= @user.weight %> <br>
+Desired Weight: <%= @goal.desired_weight %> <br>
+
+Recommended Daily Calories: <%= @goal.daily_calories %>
+

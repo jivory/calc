@@ -1,0 +1,38 @@
+<%= form_for @user, url: updates_user_path(@user) do |f| %>
+	
+	<%= fields_for @goal do |u| %>
+	<%= u.label :goal_name, "Goal Name" %>
+	<%= u.text_field :goal_name %><br />
+
+	<%= f.label :age %>
+	<%= f.number_field :age %><br />
+
+	<%= f.label :sex %>
+	<%= f.select (:sex) do  %>
+		<% [['Male', 'male'], ['Female', 'female']].each do |c| -%>
+		    <%= content_tag(:option, c.first, value: c.last) %>
+		<% end %> 
+		<% end %><br>
+
+	<%= f.label :weight, "Current Weight" %>
+	<%= f.number_field :weight %> lbs<br />
+
+
+	<%= u.label :desired_weight, "Desired Weight" %>
+	<%= u.number_field :desired_weight %><br />
+
+	<%= f.label :height %>
+	<%= f.number_field :height %> inches<br />
+
+	<%= f.label :activity %>
+	<%= f.select (:activity) do  %>
+		<% [['Sedentary', 'sedentary'], ['Mild', 'mild'], ['Moderate', 'moderate'], ['Heavy', 'heavy'], ['Extreme', 'extreme']].each do |c| -%>
+			    <%= content_tag(:option, c.first, value: c.last) %>
+		<% end %> 
+	<% end %> <%= link_to "More Info", "#" %><br />
+
+
+<%= f.submit "Calculate" %>
+
+<% end %>
+<% end %>

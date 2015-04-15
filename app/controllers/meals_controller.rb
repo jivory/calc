@@ -11,8 +11,12 @@ before_action :correct_user, only: [:show]
   end
 
   def index
+
+  #need to set this in the database for each user
+  	Time.zone = "Eastern Time (US & Canada)" 
   	@last_month_meals = current_user.meals.where(" day_of_meal > ? ", 1.month.ago).to_a
 
+  #splits out @last_month_meals by type
   	@meals_meals = []
   	@meals_snacks = []
   	@meals_drinks = []
@@ -26,8 +30,8 @@ before_action :correct_user, only: [:show]
   			@meals_snacks << meal
   		end
   	end
-  	@meals = @meals_meals + @meals_drinks + @meals_snacks
 
+  #sets the week for the index view loop
   	@week = []
   	@day = Time.zone.now
   	while @day>7.day.ago do
@@ -36,22 +40,15 @@ before_action :correct_user, only: [:show]
   	end
 
    	@meal_times = ["breakfast", "lunch", "dinner", "other"]
-  	Time.zone = "Eastern Time (US & Canada)"
+  	
   	@today = Time.zone.now.strftime('%Y-%m-%d')
   	@yesterday = 1.day.ago.strftime('%Y-%m-%d')
 
-
-	#test code. delete below
-  	@a = 1.day.ago
-  	@b = 0.day.ago
-  	@today_calories = total_calories(@a, @b)
-  	@yesterday_calories = total_calories(2.day.ago, 1.day.ago)
   #change week to month? and then limit view
   end
 
   def new
   	@meal = Meal.new
-  	@set_date = params[:value]
   end
 
   def create

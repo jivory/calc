@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406152735) do
+ActiveRecord::Schema.define(version: 20150413180929) do
+
+  create_table "goals", force: :cascade do |t|
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "user_id"
+    t.integer  "daily_calories"
+    t.integer  "desired_weight"
+    t.string   "goal_type"
+    t.string   "goal_name"
+  end
 
   create_table "meals", force: :cascade do |t|
     t.string   "meal_type"
@@ -43,6 +53,11 @@ ActiveRecord::Schema.define(version: 20150406152735) do
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "age"
+    t.integer  "weight"
+    t.integer  "height"
+    t.string   "activity"
+    t.string   "sex"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

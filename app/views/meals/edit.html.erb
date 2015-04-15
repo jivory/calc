@@ -17,7 +17,7 @@
 <% end %><br />
 
 <%= f.label :day_of_meal %>
-<%= f.date_field :day_of_meal, :value => Time.now.strftime('%Y-%m-%d') %><br /> 
+<%= f.date_field :day_of_meal %><br /> 
 <!--set default as today, might be able to do this by making the day_of_meal today by default in database-->
 <%= hidden_field_tag "redirect", @redirect %>
 <%= f.submit "Update Meal" %>
