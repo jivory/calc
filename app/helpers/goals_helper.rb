@@ -19,26 +19,29 @@ module GoalsHelper
 
   	@weight = current_user.weight * 0.453592
   	@height = current_user.height * 2.54
+  	@lose_gain_multiplier = { lose: 0.9, gain: 1.1, maintain: 1.0 }
 
   	if current_user.sex == "male"
   		@base_bmr = 66.47 + ( 13.75 * @weight ) + ( 5.003 * @height ) - ( 6.755 * current_user.age )
-			@bmr = @base_bmr * activity
-			@bmr.to_i
+			@bmr = @base_bmr * activity 
+			@lose_gain_bmr = @bmr * @lose_gain_multiplier[@goal_type]
+			@lose_gain_bmr.to_i
 		elsif
   		@base_bmr = 655.1 + ( 9.563 * @weight ) + ( 1.850 * @height ) - ( 4.676 * current_user.age )
-			@bmr = @base_bmr * activity
-			@bmr.to_i
+			@bmr = @base_bmr * activity 
+			@lose_gain_bmr = @bmr * @lose_gain_multiplier[@goal_type]
+			@lose_gain_bmr.to_i
   	end
   end
 
   def define_goal(weight)
 
   	if current_user.weight > weight
-  		return "lose"
+  		return :lose
   	elsif current_user.weight < weight
-  		return "gain"
+  		return :gain
   	elsif current_user.weight == weight
-  		return "maintain"
+  		return :maintain
   	end
   end
 

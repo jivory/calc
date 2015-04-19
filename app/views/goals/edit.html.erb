@@ -1,7 +1,10 @@
-<h2> Calculate Your Calorie Goal </h2> 
-
 <%= form_for @user, url: updates_user_path(@user) do |f| %>
-	
+<h2> Calculate Your Calorie Goal 
+	<% if !@goal.custom_calories.nil? %>
+	<%= f.submit "Select" %>
+	<% end %>
+</h2> 
+
 	<%= fields_for @goal do |u| %>
 	<%= u.label :goal_name, "Goal Name" %>
 	<%= u.text_field :goal_name %><br />
@@ -30,8 +33,24 @@
 	<% @activity.each do |name, result| %>
 	<%= f.check_box(:activity, {:multiple => false}, result, nil) %>  <%= name %>
 	<% end %><br><br>
-<%= f.submit "Calculate" %>
+
+	<%= f.submit "Enter" %>
 
 <% end %>
 <% end %>
 
+<%= form_for @goal do |u| %>
+	<h2> Enter Your Own Calorie Goal 
+		<% if !@goal.custom_calories.nil? %>
+		<%= u.submit "Select" %>
+		<% end %> </h2>
+
+		<%= u.label :goal_name, "Goal Name" %>
+		<%= u.text_field :goal_name %><br />
+
+		<%= u.label :custom_calories, "Your Calorie Goal"  %>
+		<%= u.number_field :custom_calories %>
+
+		<%= u.submit "Enter" %>
+
+<% end %>

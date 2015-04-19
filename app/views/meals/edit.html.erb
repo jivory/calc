@@ -1,20 +1,17 @@
 <%= form_for(@meal) do |f| %>
+<%= f.label :meal_time %>
+	<% @meal_time.each do |name, result| %>
+		<%= f.check_box(:meal_time, {:multiple => false}, result, nil) %>  <%= name %>
+	<% end %><br>
+
 <%= f.label :meal_type %>
-<%= f.select (:meal_type) do  %>
-<% [['Meal', 'meal'], ['Snack', 'snack'], ['Drink', 'drink']].each do |c| -%>
-    <%= content_tag(:option, c.first, value: c.last) %>
-<% end %>
-<% end %><br />
+<%= f.label :meal_type %>
+	<% @meal_type.each do |name, result| %>
+		<%= f.check_box(:meal_type, {:multiple => false}, result, nil) %>  <%= name %>
+	<% end %><br>
 
 <%= f.label :calories %>
 <%= f.number_field :calories %><br />
-
-<%= f.label :meal_time %>
-<%= f.select (:meal_time) do  %>
-<% [['Breakfast', 'breakfast'], ['Lunch', 'breakfast'], ['Dinner', 'dinner'], ['Other', 'other']].each do |c| -%>
-    <%= content_tag(:option, c.first, value: c.last) %>
-<% end %>
-<% end %><br />
 
 <%= f.label :day_of_meal %>
 <%= f.date_field :day_of_meal %><br /> 

@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   match '/users/:id/updates' => 'users#updates', via: [:patch], :as => :updates_user
   root 'welcome#home'
 
-  get     'help'      =>      'welcome#help'
+  get     'help'        =>      'welcome#help'
+  get     'more_info'   =>      'goals#info'
 
   resources :meals 
   resources :goals

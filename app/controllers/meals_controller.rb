@@ -11,7 +11,6 @@ before_action :correct_user, only: [:show]
   end
 
   def index
-
   #need to set this in the database for each user
   	Time.zone = "Eastern Time (US & Canada)" 
   	@last_month_meals = current_user.meals.where(" day_of_meal > ? ", 1.month.ago).to_a
@@ -49,6 +48,8 @@ before_action :correct_user, only: [:show]
 
   def new
   	@meal = Meal.new
+    @meal_type = { Meal: "meal", Drink: "drink", Snack: "snack", Drink: "drink" }
+    @meal_time = { Breakfast: "breakfast", Lunch: "lunch", Dinner: "dinner", Other: "other" }
   end
 
   def create
@@ -65,7 +66,8 @@ before_action :correct_user, only: [:show]
   def edit
   	@meal = Meal.find(params[:id])
   	@redirect = params[:data]
-  	#will let you update a particular meal
+    @meal_type = { Meal: "meal", Drink: "drink", Snack: "snack", Drink: "drink" }
+    @meal_time = { Breakfast: "breakfast", Lunch: "lunch", Dinner: "dinner", Other: "other" }
   end
 
   def update

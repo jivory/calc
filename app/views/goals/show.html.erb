@@ -3,5 +3,14 @@ Goal: <%= @goal.goal_type.capitalize %> <%= @gain_lose == 0 ? nil : "#{@gain_los
 Current Weight: <%= @user.weight %> <br>
 Desired Weight: <%= @goal.desired_weight %> <br>
 
-Recommended Daily Calories: <%= @goal.daily_calories %>
+BMR Calculated Calories: <%= @goal.bmr_calories %> <br>
+<%= @goal.custom_calories.nil? ? nil : "Custom Calorie Goal: #{@goal.custom_calories}" %> <br> <br> 
+
+<%= link_to "Edit", edit_goal_path %> <br><br>
+<% if @goal.custom_calories.nil? %>
+<%= "Want to enter a custom calorie goal? " %>
+<%= link_to "Click here", edit_goal_path %>
+<% end %>
+
+
 

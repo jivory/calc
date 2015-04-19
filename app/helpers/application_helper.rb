@@ -4,3 +4,10 @@ module ApplicationHelper
 	end
 
 end
+
+
+#http://www.siteinspire.com/websites/2790-desktime
+#http://www.siteinspire.com/websites/4055-sitedrop
+#https://www.dropbox.com/guide/
+#http://nikemakers.com/
+#http://www.spelltower.com/#about
