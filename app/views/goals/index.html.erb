@@ -1,0 +1,60 @@
+<% @goals.each do |goal| %>
+
+<% if !goal.updated_at.nil?%>
+<%= "Last Updated: #{goal.updated_at.strftime('%D')}" %> <br> 
+<% end %>
+
+<% if !goal.current_goal.nil?%>
+<%= "Active Goal: #{goal.current_goal}" %> <br> 
+<% end %>
+
+<% if !goal.goal_name.nil?%>
+<%= "Goal Name: #{goal.goal_name}" %> <br> 
+<% end %>
+
+<% if !goal.goal_type.nil?%>
+<%= "Goal Type: #{goal.goal_type.capitalize}" %> <br> 
+<% end %>
+
+<% if !goal.weight.nil?%>
+<%= "Current Weight: #{goal.weight}" %> <br> 
+<% end %>
+
+<% if !goal.desired_weight.nil?%>
+<%= "Desired Weight: #{goal.desired_weight}" %> <br> 
+<% end %>
+
+<% if !goal.bmr_calories.nil?%>
+<%= "BMR Calculated Calories: #{goal.bmr_calories}" %> 
+<% if !goal.bmr_calories.nil? && !goal.current_goal? %>
+<%= link_to "Set as Active Goal", goals_set_bmr_as_goal_path(@goal)%> 
+<% end %>
+<br> 
+<% end %>
+
+<% if !goal.custom_calories.nil?%>
+<%= "Custom Calories: #{goal.custom_calories}" %> 
+<% if !goal.custom_calories.nil? && !goal.current_goal? %>
+<%= link_to "Set as Active Goal", goals_set_custom_as_goal_path(@goal)%> 
+<% end %>
+<br> 
+<% end %>
+
+<% if !goal.daily_calories.nil?%>
+<%= "Current Calorie Goal: #{goal.daily_calories}" %> <br><br> 
+<% end %>
+
+<%= link_to "View", goal_path(goal) %> 
+<%= link_to "Edit", edit_goal_path(goal) %> 
+<%= link_to "Delete", goal, method: :delete %> 
+<br><br><br><br> 
+
+<% end %>
+
+
+
+
+
+
+
+

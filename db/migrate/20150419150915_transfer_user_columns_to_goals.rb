@@ -12,3 +12,9 @@ class TransferUserColumnsToGoals < ActiveRecord::Migration
   	remove_column :users, :sex, :string
   end
 end
+
+
+#move users controller to goals controller
+#change validations
+#update links
+#update method calls

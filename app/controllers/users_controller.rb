@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 include GoalsHelper
+#delete this whole thing
 
 	def updates
 		@user = User.find(params[:id])
@@ -23,18 +24,16 @@ include GoalsHelper
 	  	@weight_goal = params[:goal][:desired_weight].to_i
 			@goal_type = define_goal(@weight_goal)
 	  	@goal_params = { goal_type: @goal_type, 
-											 goal_name: params[:goal][:goal_name], 
-											 desired_weight: params[:goal][:desired_weight], 
 											 bmr_calories: bmr_calculate, 
 											 daily_calories: bmr_calculate }
 		end
 
 		def extra_validations
 			if empty_error(params[:user][:age], :age) ||
-				empty_error(params[:user][:weight], :weight) ||
 				empty_error(params[:user][:sex], :sex) ||
-				empty_error(params[:user][:activity], :activity) ||
-				empty_error(params[:user][:height], :height)
+				empty_error(params[:user][:weight], :weight) ||
+				empty_error(params[:user][:height], :height) ||
+				empty_error(params[:user][:activity], :activity) 
 				return false
 			else
 				return true			

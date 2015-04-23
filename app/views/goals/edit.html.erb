@@ -1,13 +1,8 @@
-<%= form_for @user, url: updates_user_path(@user) do |f| %>
-<h2> Calculate Your Calorie Goal 
-	<% if !@goal.custom_calories.nil? %>
-	<%= f.submit "Select" %>
-	<% end %>
-</h2> 
+<%= form_for @goal do |f| %>
+<h2> Calculate Your Calorie Goal </h2> 
 
-	<%= fields_for @goal do |u| %>
-	<%= u.label :goal_name, "Goal Name" %>
-	<%= u.text_field :goal_name %><br />
+	<%= f.label :goal_name, "Goal Name" %>
+	<%= f.text_field :goal_name %><br />
 
 	<%= f.label :age %>
 	<%= f.number_field :age %><br />
@@ -23,8 +18,8 @@
 	<%= f.number_field :weight %> lbs<br />
 
 
-	<%= u.label :desired_weight, "Desired Weight" %>
-	<%= u.number_field :desired_weight %><br />
+	<%= f.label :desired_weight, "Desired Weight" %>
+	<%= f.number_field :desired_weight %><br />
 
 	<%= f.label :height %>
 	<%= f.number_field :height %> inches<br />
@@ -36,14 +31,10 @@
 
 	<%= f.submit "Enter" %>
 
-<% end %>
-<% end %>
+<% end %><br>
 
 <%= form_for @goal do |u| %>
-	<h2> Enter Your Own Calorie Goal 
-		<% if !@goal.custom_calories.nil? %>
-		<%= u.submit "Select" %>
-		<% end %> </h2>
+	<h2> Enter Your Own Calorie Goal </h2>
 
 		<%= u.label :goal_name, "Goal Name" %>
 		<%= u.text_field :goal_name %><br />
@@ -54,3 +45,6 @@
 		<%= u.submit "Enter" %>
 
 <% end %>
+
+<%= link_to "Custom Calorie Goal", goals_custom_path(@goal) %>
+

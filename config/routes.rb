@@ -6,9 +6,15 @@ Rails.application.routes.draw do
 
   get     'help'        =>      'welcome#help'
   get     'more_info'   =>      'goals#info'
+  get     'goals/custom'
+  get     'goals/set_custom_as_goal'
+  get     'goals/set_bmr_as_goal'
 
   resources :meals 
   resources :goals
+
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -85,6 +85,7 @@ before_action :correct_user, only: [:show]
   end
 
   def destroy
+    
   	@meal = Meal.find(params[:id])
   	@meal.destroy
   	redirect_to meals_path

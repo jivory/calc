@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415175306) do
+ActiveRecord::Schema.define(version: 20150423013511) do
 
   create_table "goals", force: :cascade do |t|
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "user_id"
     t.integer  "daily_calories"
     t.integer  "desired_weight"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 20150415175306) do
     t.string   "goal_name"
     t.integer  "bmr_calories"
     t.integer  "custom_calories"
+    t.integer  "age"
+    t.integer  "weight"
+    t.integer  "height"
+    t.string   "activity"
+    t.string   "sex"
+    t.boolean  "current_goal",    default: true
   end
 
   create_table "meals", force: :cascade do |t|
@@ -55,11 +61,6 @@ ActiveRecord::Schema.define(version: 20150415175306) do
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "age"
-    t.integer  "weight"
-    t.integer  "height"
-    t.string   "activity"
-    t.string   "sex"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

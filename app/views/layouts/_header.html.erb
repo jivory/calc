@@ -1,6 +1,6 @@
 <% if logged_in_user? %>
 	<%= link_to "My Meals", meals_path %>
-	<%= link_to "My Goal", current_user.goals.first.nil? ? new_goal_path : goal_path(current_user.goals.first)%>
+	<%= link_to "My Goal", current_user.goals.first.nil? ? new_goal_path : goal_path(current_user.goals.find_by(current_goal: true)) %>
 	<%= link_to "Logout", destroy_user_session_path, method: :delete %>
 	<%= link_to "Help", help_path %>
 
