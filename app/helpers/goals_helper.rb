@@ -1,13 +1,13 @@
 module GoalsHelper
 
-  def set_current_goal
+  def set_current_goal(goal)
     @user_goals = Goal.where(" user_id = ? ", current_user.id)
     @user_goals.each do |goal|
       unless goal == @goal 
         goal.update_attribute(:current_goal, false)
       end
     end
-    @goal.update_attribute(:current_goal, true)
+    goal.update_attribute(:current_goal, true)
   end
   
   def gain_lose

@@ -1,19 +1,20 @@
 <%= form_for(@meal) do |f| %>
-<%= f.label :meal_time %>
+<%= f.label :meal_time %>	
 	<% @meal_time.each do |name, result| %>
-		<%= f.check_box(:meal_time, {:multiple => false}, result, nil) %>  <%= name %>
+		<%= f.radio_button(:meal_time, result, :checked => (result.downcase == params[:meal]) ) %> <%= name %>
 	<% end %><br>
 
 <%= f.label :meal_type %>
 	<% @meal_type.each do |name, result| %>
-		<%= f.check_box(:meal_type, {:multiple => false}, result, nil) %>  <%= name %>
+		<%= f.radio_button(:meal_type, result, :checked => (result.downcase == params[:type]) ) %> <%= name %>
 	<% end %><br>
 
 <%= f.label :calories %>
-<%= f.number_field :calories %><br />
+<%= f.number_field :calories %> <%= f.range_field :calories %><br />
 
 <%= f.label :day_of_meal %>
 <%= f.date_field :day_of_meal, value: params[:value] %><br /> 
+
 
 <%= f.submit "Add Meal" %>
 

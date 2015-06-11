@@ -1,18 +1,23 @@
+<h2>Past Week</h2>
+Calorie Goal: <%= @current_goal.daily_calories %>
+
+<%# runs thru all goal characteristics as defined in the goals_controller%>
 <% @goal_attributes.each do |name, value| %>
 <% if !value.nil? %>
 <%= "#{name}: " %><%= value %><br>
 <% end %>
 <% end %>
 
-<%= "Current Calorie Goal: #{@goal.daily_calories}" %>
+<%# shows button to switch between custom and calculated calorie goals %>
 <% if !@goal.custom_calories.nil? && @goal.custom_calories != @goal.daily_calories %>
 (<%= link_to "Use Custom Goal", goals_set_custom_as_goal_path(@goal) %>) <br>
 <% elsif !@goal.custom_calories.nil? && @goal.bmr_calories != @goal.daily_calories %>
 (<%= link_to "Use Calculated Goal", goals_set_bmr_as_goal_path(@goal) %>) <br>
-<% end %> <br>
+<% end %> <br><br>
 
 <%= link_to "Edit", edit_goal_path %> 
-<%= link_to "History", goals_path %> <br>
+<%= link_to "History", goals_path %> 
+<%= link_to "New Goal", new_goal_path %><br>
 
 <% if @goal.custom_calories.nil? %> 
 <%= "Want to enter a custom calorie goal? " %>

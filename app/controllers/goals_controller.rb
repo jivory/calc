@@ -11,7 +11,10 @@ include GoalsHelper
 												 ["Desired Weight", @goal.desired_weight],
 												 ["BMR Calculated Calories", @goal.bmr_calories],
 												 ["Custom Calories", @goal.custom_calories],
-												 ["Active Goal", @goal.current_goal]]
+												 ["Active Goal", @goal.current_goal],
+												 ["Current Calorie Goal", @goal.daily_calories]]
+		@current_goal = current_user.goals.find_by(" current_goal = ? ", true)
+		@past_week_calories = 0
 		
 	end
 

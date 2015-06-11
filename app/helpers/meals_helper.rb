@@ -24,5 +24,25 @@ module MealsHelper
   	end
   	return @sum_meals
   end
+
+  def over_under(calories, goal)
+    if calories < goal
+      return "under #{goal-calories}"
+    elsif calories > goal
+      return "over #{calories-goal}"
+    else
+      return nil
+    end
+  end
+
+  def how_much_left(calories, goal)
+    if calories < goal
+      return "#{goal-calories} left"
+    elsif calories > goal
+      return "#{calories-goal} over"
+    else
+      return nil
+    end
+  end
   
 end

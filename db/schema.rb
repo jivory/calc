@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423013511) do
+ActiveRecord::Schema.define(version: 20150607153752) do
 
   create_table "goals", force: :cascade do |t|
     t.datetime "created_at",                     null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150423013511) do
     t.string   "activity"
     t.string   "sex"
     t.boolean  "current_goal",    default: true
+    t.string   "comments"
   end
 
   create_table "meals", force: :cascade do |t|

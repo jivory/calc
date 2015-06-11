@@ -1,3 +1,5 @@
+<%= link_to "New Goal", new_goal_path %><br><br>
+
 <% @goals.each do |goal| %>
 
 <% if !goal.updated_at.nil?%>
@@ -26,7 +28,7 @@
 
 <% if !goal.bmr_calories.nil?%>
 <%= "BMR Calculated Calories: #{goal.bmr_calories}" %> 
-<% if !goal.bmr_calories.nil? && !goal.current_goal? %>
+<% if !goal.bmr_calories.nil? && !goal.current_goal? && goal.bmr_calories != goal.daily_calories %>
 <%= link_to "Set as Active Goal", goals_set_bmr_as_goal_path(@goal)%> 
 <% end %>
 <br> 
@@ -34,7 +36,7 @@
 
 <% if !goal.custom_calories.nil?%>
 <%= "Custom Calories: #{goal.custom_calories}" %> 
-<% if !goal.custom_calories.nil? && !goal.current_goal? %>
+<% if !goal.custom_calories.nil? && !goal.current_goal? && goal.custom_calories != goal.daily_calories%>
 <%= link_to "Set as Active Goal", goals_set_custom_as_goal_path(@goal)%> 
 <% end %>
 <br> 

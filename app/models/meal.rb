@@ -8,5 +8,4 @@ class Meal < ActiveRecord::Base
   						
   validates :day_of_meal, presence: true
 
-
 end

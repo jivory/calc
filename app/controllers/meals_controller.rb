@@ -14,7 +14,7 @@ before_action :correct_user, only: [:show]
   #need to set this in the database for each user
   	Time.zone = "Eastern Time (US & Canada)" 
   	@last_month_meals = current_user.meals.where(" day_of_meal > ? ", 1.month.ago).to_a
-
+    @current_goal = current_user.goals.find_by(" current_goal = ? ", true)
   #splits out @last_month_meals by type
   	@meals_meals = []
   	@meals_snacks = []
