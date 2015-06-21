@@ -13,12 +13,13 @@ before_action :correct_user, only: [:show]
   def index
   #need to set this in the database for each user
   	Time.zone = "Eastern Time (US & Canada)" 
-  	@last_month_meals = current_user.meals.where(" day_of_meal > ? ", 1.month.ago).to_a
+  	@last_month_meals = current_user.meals.where(" day_of_meal > ? ", 1.month.ago)
     @current_goal = current_user.goals.find_by(" current_goal = ? ", true)
   #splits out @last_month_meals by type
   	@meals_meals = []
   	@meals_snacks = []
   	@meals_drinks = []
+    @meals_desserts = []
   	@count = 0
   	@last_month_meals.each do |meal|
   		if meal.meal_type == "meal"
@@ -27,6 +28,8 @@ before_action :correct_user, only: [:show]
   			@meals_drinks << meal
   		elsif meal.meal_type == "snack"
   			@meals_snacks << meal
+      elsif meal.meal_type == "dessert"  
+        @meal_desserts << meal
   		end
   	end
 
@@ -48,7 +51,7 @@ before_action :correct_user, only: [:show]
 
   def new
   	@meal = Meal.new
-    @meal_type = { Meal: "meal", Drink: "drink", Snack: "snack", Drink: "drink" }
+    @meal_type = { Meal: "meal", Drink: "drink", Snack: "snack", Drink: "drink", Dessert: "dessert" }
     @meal_time = { Breakfast: "breakfast", Lunch: "lunch", Dinner: "dinner", Other: "other" }
   end
 
@@ -66,7 +69,7 @@ before_action :correct_user, only: [:show]
   def edit
   	@meal = Meal.find(params[:id])
   	@redirect = params[:data]
-    @meal_type = { Meal: "meal", Drink: "drink", Snack: "snack", Drink: "drink" }
+    @meal_type = { Meal: "meal", Drink: "drink", Snack: "snack", Drink: "drink", Dessert: "dessert" }
     @meal_time = { Breakfast: "breakfast", Lunch: "lunch", Dinner: "dinner", Other: "other" }
   end
 

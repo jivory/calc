@@ -10,7 +10,7 @@
 
 	<%= f.label :sex %>
 	<% @sex.each do |name, result| %>
-	<%= f.check_box(:sex, {:multiple => false}, result, nil) %>  <%= name %>
+	<%= f.radio_button(:sex, result) %>  <%= name %>
 	<% end %><br>
 
 	<%= f.label :weight, "Current Weight" %>
@@ -23,11 +23,21 @@
 	<%= f.label :height %>
 	<%= f.number_field :height %> inches<br />
 
-	<%= f.label :activity, "Activity level" %> <%= link_to "More Info", more_info_path %><br>
+	<%= f.label :activity, "Activity Level" %> <%= link_to "More Info", more_info_path %><br>
 	<% @activity.each do |name, result| %>
-	<%= f.check_box(:activity, {:multiple => false}, result, nil) %>  <%= name %>
+	<%= f.radio_button(:activity, result) %>  <%= name %>
 	<% end %><br><br>
-<%= f.submit "Calculate" %>
+<%= f.submit "Calculate" %><br><br> 
+	
+or <br>
+  <%= f.label :custom_calories, "Use Custom Calorie Goal" %>
+  <%= f.number_field :custom_calories %>
+  <%= f.check_box :use_custom_goal %><br><br>  
+
+<%= f.submit "Save" %><br><br> 
+
+<%= f.label :comments %><br>
+<%= f.text_area :comments, size: "50x5" %>
 
 <% end %>
 

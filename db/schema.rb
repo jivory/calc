@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150607153752) do
+ActiveRecord::Schema.define(version: 20150612155100) do
 
   create_table "goals", force: :cascade do |t|
     t.datetime "created_at",                     null: false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20150607153752) do
     t.string   "sex"
     t.boolean  "current_goal",    default: true
     t.string   "comments"
+    t.boolean  "use_custom_goal"
   end
 
   create_table "meals", force: :cascade do |t|
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150607153752) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
+    t.string   "comments"
   end
 
   create_table "users", force: :cascade do |t|

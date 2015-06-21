@@ -6,16 +6,33 @@ include GoalsHelper
 		@goal = Goal.find(params[:id])
 		@goal_attributes =  [["Goal Id", @goal.id],
 												 ["Goal Name", @goal.goal_name],
-												 ["Goal Type", @goal.goal_type.capitalize],
+												 ["Goal Type", @goal.goal_type == nil ? @goal.goal_type : @goal.goal_type.capitalize ],
 												 ["Current Weight", @goal.weight],
 												 ["Desired Weight", @goal.desired_weight],
 												 ["BMR Calculated Calories", @goal.bmr_calories],
 												 ["Custom Calories", @goal.custom_calories],
+												 ["Use Custom Goal", @goal.use_custom_goal],												 
 												 ["Active Goal", @goal.current_goal],
-												 ["Current Calorie Goal", @goal.daily_calories]]
+												 ["Current Calorie Goal", @goal.daily_calories],
+												 ["Comments", @goal.comments]]
+
 		@current_goal = current_user.goals.find_by(" current_goal = ? ", true)
-		@past_week_calories = 0
+		@calories = 0
+		@calories_in_pound = 3500
 		
+		#pulling in month of dates
+		@month = []
+  	@day = Time.zone.now
+  	while @day>1.month.ago do
+  		@month << @day
+  		@day -= 1.day
+  	end
+
+  	#query for one month's meals
+  	@last_month_meals = current_user.meals.where(" ? >= day_of_meal AND day_of_meal >= ? ", 
+  																								Time.zone.now.strftime('%Y-%m-%d'),
+  																								1.month.ago.strftime('%Y-%m-%d'))
+
 	end
 
 	def index
@@ -32,13 +49,18 @@ include GoalsHelper
 	def create
 		@goal = current_user.goals.create_with(current_goal: true).build(goal_params)
 		if @goal.save
-			@goal_type = define_goal(@goal.desired_weight, @goal.weight) 
-			@goal.update_attribute(:goal_type, @goal_type)
-			@goal.update_attribute(:bmr_calories, bmr_calculate)
-			@goal.update_attribute(:daily_calories, bmr_calculate)
-			set_current_goal(@goal)
-			@goal.update_attribute(:current_goal, true)
-			redirect_to goal_path(@goal)
+			if @goal.use_custom_goal == true
+				@goal.update_attribute(:daily_calories, @goal.custom_calories)
+				set_current_goal(@goal)
+				redirect_to goal_path(@goal)
+			else
+				@goal_type = define_goal(@goal.desired_weight, @goal.weight) 
+				@goal.update_attribute(:goal_type, @goal_type)
+				@goal.update_attribute(:bmr_calories, bmr_calculate)
+				@goal.update_attribute(:daily_calories, bmr_calculate)
+				set_current_goal(@goal)
+				redirect_to goal_path(@goal)
+			end
 		else
 			flash[:error] = @goal.errors.full_messages.to_sentence
 			redirect_to new_goal_path
@@ -65,12 +87,18 @@ include GoalsHelper
 	def update
 		@goal = Goal.find_by(id: params[:id])
 		if @goal.update_attributes(goal_params)
-			@goal_type = define_goal(@goal.desired_weight, @goal.weight) 
-			@goal.update_attribute(:goal_type, @goal_type)
-			@goal.update_attribute(:bmr_calories, bmr_calculate)
-			@goal.update_attribute(:daily_calories, bmr_calculate)
-			set_current_goal(@goal)
-			redirect_to goal_path
+			if @goal.use_custom_goal == true
+				@goal.update_attribute(:daily_calories, @goal.custom_calories)
+				set_current_goal(@goal)
+				redirect_to goal_path(@goal)
+			else
+				@goal_type = define_goal(@goal.desired_weight, @goal.weight) 
+				@goal.update_attribute(:goal_type, @goal_type)
+				@goal.update_attribute(:bmr_calories, bmr_calculate)
+				@goal.update_attribute(:daily_calories, bmr_calculate)
+				set_current_goal(@goal)
+				redirect_to goal_path(@goal)
+			end
 		else
 			flash[:error] = @goal.errors.full_messages.to_sentence
 			redirect_to edit_goal_path
@@ -84,6 +112,7 @@ include GoalsHelper
 		@goal = Goal.find(params[:format])
     set_current_goal(@goal)
     @goal.update_attribute(:daily_calories, @goal.custom_calories)
+    @goal.update_attribute(:use_custom_goal, true)
     redirect_to goal_path(@goal)
   end
 
@@ -91,6 +120,7 @@ include GoalsHelper
   	@goal = Goal.find(params[:format])
     set_current_goal(@goal)
     @goal.update_attribute(:daily_calories, @goal.bmr_calories)
+    @goal.update_attribute(:use_custom_goal, false)
     redirect_to goal_path(@goal)
   end
 
@@ -98,7 +128,7 @@ include GoalsHelper
 	private
 
 	  def goal_params
-	  	params.require(:goal).permit(:goal_name, :desired_weight, :age, :sex, :weight, :height, :activity, :goal_type, :bmr_calories, :daily_calories, :current_goal, :custom_calories)
+	  	params.require(:goal).permit(:goal_name, :desired_weight, :age, :sex, :weight, :height, :activity, :goal_type, :bmr_calories, :daily_calories, :current_goal, :custom_calories, :use_custom_goal, :comments)
 	  end
 
 	 # def custom_params

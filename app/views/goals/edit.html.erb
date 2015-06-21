@@ -1,6 +1,7 @@
-<%= form_for @goal do |f| %>
-<h2> Calculate Your Calorie Goal </h2> 
+<h2> Update Your Calorie Goal </h2> 
 
+<%= form_for @goal do |f| %>
+	
 	<%= f.label :goal_name, "Goal Name" %>
 	<%= f.text_field :goal_name %><br />
 
@@ -8,11 +9,9 @@
 	<%= f.number_field :age %><br />
 
 	<%= f.label :sex %>
-	<%= f.select (:sex) do  %>
-		<% [['Male', 'male'], ['Female', 'female']].each do |c| -%>
-		    <%= content_tag(:option, c.first, value: c.last) %>
-		<% end %> 
-		<% end %><br>
+	<% @sex.each do |name, result| %>
+	<%= f.radio_button(:sex, result) %>  <%= name %>
+	<% end %><br>
 
 	<%= f.label :weight, "Current Weight" %>
 	<%= f.number_field :weight %> lbs<br />
@@ -24,27 +23,21 @@
 	<%= f.label :height %>
 	<%= f.number_field :height %> inches<br />
 
-	<%= f.label :activity, "Activity level" %> <%= link_to "More Info", more_info_path %><br>
+	<%= f.label :activity, "Activity Level" %> <%= link_to "More Info", more_info_path %><br>
 	<% @activity.each do |name, result| %>
-	<%= f.check_box(:activity, {:multiple => false}, result, nil) %>  <%= name %>
+	<%= f.radio_button(:activity, result) %>  <%= name %>
 	<% end %><br><br>
+<%= f.submit "Update" %><br><br> 
+	
+or <br><br>
+  <%= f.label :custom_calories, "Use A Custom Calorie Goal" %>
+  <%= f.check_box :use_custom_goal %>
+  <%= f.number_field :custom_calories %><br><br>
 
-	<%= f.submit "Enter" %>
+<%= f.submit "Update" %><br><br>
 
-<% end %><br>
-
-<%= form_for @goal do |u| %>
-	<h2> Enter Your Own Calorie Goal </h2>
-
-		<%= u.label :goal_name, "Goal Name" %>
-		<%= u.text_field :goal_name %><br />
-
-		<%= u.label :custom_calories, "Your Calorie Goal"  %>
-		<%= u.number_field :custom_calories %>
-
-		<%= u.submit "Enter" %>
+<%= f.label :comments %><br>
+<%= f.text_area :comments, size: "50x5" %> 
 
 <% end %>
-
-<%= link_to "Custom Calorie Goal", goals_custom_path(@goal) %>
 
