@@ -1,0 +1,104 @@
+/*	
+*	################################################################################
+*	
+*	My Custom Style for KINGADMIN
+*	---------------------------------------------------------------------
+*
+*	Version		1.0
+*	Author		Your Name
+*	
+*	Override theme style or create your new styles. Direct change to main.css
+*	is not recommended to avoid problems when theme updates arrived in the future
+*	#f1f1f1
+#fff
+*	################################################################################
+*/
+
+
+.header-error {
+  color: #f1f1f1;
+}
+
+.ol .li {
+	margin-top: 0;
+  list-style: none;
+}
+
+.em0 {
+	font-size: 25px;
+	color: #fff;
+}
+
+.top-bar .top-bar-right {
+	top: 6px;
+}
+
+.center {
+	text-align: center;
+	align: center;
+}
+
+.center-form {
+	text-align: center;
+	align: center;
+	display: inline-block
+}
+
+.top-bar-right {
+	font-size: 1.3em;
+	color: #fff;
+	text-shadow: 1px 1px #325655;
+}
+
+.wrapper {
+	background-color: #fff;
+}
+
+a {
+  font-weight: 100;
+  letter-spacing: 0.25px;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  text-decoration: none;
+ }
+
+h1 {
+	background-color: #efefef;
+	border-bottom: 1px solid #D7D7D7;
+	border-top: 1px solid #D7D7D7;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+.spacer {
+	padding-top: 15px;
+}
+
+.spacer-3x {
+	padding-top: 45px;
+}
+
+.icon-angle-left {
+	font-size: 10px;
+}
+
+.exponent {
+	font-size: .7em;
+	vertical-align: text-top;
+	text-align: left;
+}
+
+.green {
+	color: #339933;
+}
+
+.red {
+	color: #CC0000;
+}
+
+.bottom {
+	border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+}

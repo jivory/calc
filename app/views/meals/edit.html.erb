@@ -1,24 +1,66 @@
-<%= form_for(@meal) do |f| %>
-<%= f.label :meal_time %>
-	<% @meal_time.each do |name, result| %>
-		<%= f.check_box(:meal_time, {:multiple => false}, result, nil) %>  <%= name %>
-	<% end %><br>
+<% provide(:title, 'Add') %>
 
-<%= f.label :meal_type %>
-<%= f.label :meal_type %>
-	<% @meal_type.each do |name, result| %>
-		<%= f.check_box(:meal_type, {:multiple => false}, result, nil) %>  <%= name %>
-	<% end %><br>
-
-<%= f.label :calories %>
-<%= f.number_field :calories %><br />
-
-<%= f.label :day_of_meal %>
-<%= f.date_field :day_of_meal %><br /> 
-<!--set default as today, might be able to do this by making the day_of_meal today by default in database-->
-<%= hidden_field_tag "redirect", @redirect %>
-<%= f.submit "Update Meal" %>
-
-<% end %>
-
-
+<body>
+  <div class="wrapper full-page-wrapper page-auth page-login text-center">
+    <div class="inner-page">
+      <div class="logo">
+        <%= image_tag("meal_free.png", size: "50x50")%>
+        <%= image_tag("drink_free2.png", size: "50x50")%>
+        <%= image_tag("apple_free.png", size: "50x50")%>
+        <%= image_tag("dessert_free.png", size: "50x50")%>
+      </div>
+      <div class="login-box center-block">
+        <div class="form-horizontal">
+          <%= form_for(@meal) do |f| %>
+          <div class="form-group">
+              <div class="col-sm-12">
+                <div class="input-group">
+										<%= f.number_field :calories, class:"form-control", placeholder: "calories" %> <%# f.range_field :calories %>
+										<br>
+                  <span class="input-group-addon">
+                  	<i class="fa fa-plus-circle">
+                  	</i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="input-group">
+									<%= f.date_field :day_of_meal, class:"form-control" %>
+									<br> 
+                  <span class="input-group-addon">
+                  	<i class="fa fa-calendar">
+                  	</i>
+                  </span>
+                </div>
+              </div>
+            </div>
+	          <div class="form-group">
+	            <div class="col-sm-12 center-form">
+	              <div class="input-group center-form">
+	                <% @meal_time.each do |name, result| %>
+										<%= f.radio_button(:meal_time, result) %> <%= name %>
+									<% end %>
+									<br>
+	              </div>
+	            </div>
+	      		</div>
+            <div class="form-group">
+              <div class="col-sm-12 center-form">
+                <div class="input-group center-form">
+										<% @meal_type.each do |name, result| %>
+											<%= f.radio_button(:meal_type, result) %> <%= name %>
+										<% end %>
+										<br>
+                </div>
+              </div>
+            </div>
+            <%= hidden_field_tag "redirect", @redirect %>
+            <%= f.submit "Update Meal", class: "btn btn-custom-primary btn-lg btn-block btn-auth"%>
+        	<% end %>
+  			</div>
+			</div>
+		</div>
+	</div>
+</div>

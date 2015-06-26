@@ -1,0 +1,36 @@
+<body>
+  <div class="wrapper full-page-wrapper page-auth page-login text-center">
+    <div class="inner-page">
+      <div class="logo">
+        <%= image_tag("meal_free.png", size: "50x50")%>
+        <%= image_tag("drink_free2.png", size: "50x50")%>
+        <%= image_tag("apple_free.png", size: "50x50")%>
+        <%= image_tag("dessert_free.png", size: "50x50")%>
+      </div>
+       <div class="header-error">
+        <%= devise_error_messages! %>
+      </div>
+        <div class="login-box center-block">
+          <div class="form-horizontal">
+            <p class="title">Forgot your password?</p>
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <div class="input-group">
+                    <%= f.email_field :email, class: "form-control", autofocus: true, placeholder: "email" %>
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                  </div>
+                </div>
+              </div>
+                <%= f.submit "Send me reset password instructions", class: "fa fa-arrow-circle-o-right", class: "btn btn-custom-primary btn-lg btn-block btn-auth"  %>
+            <% end %>
+          <div class="links">
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer class="footer">&copy; 2014-2015 jIvory</footer>

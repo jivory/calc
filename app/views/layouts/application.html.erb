@@ -1,18 +1,47 @@
 <!DOCTYPE html>
-<html>
+<!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
+<!--[if !(IE)]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
 <head>
-  <title>Calc</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <title><%= full_title(yield(:title)) %></title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <!-- CSS -->
+      <!--[if lte IE 9]>
+        <link href="assets/css/main-ie.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/main-ie-part2.css" rel="stylesheet" type="text/css" />
+      <![endif]-->
+      <!-- Fav and touch icons -->
 </head>
 <body>
-  <%= render "layouts/header" %><br><br>
-  	<% flash.each do |message_type, message| %>
-       <%= content_tag(:div, message, class: "alert alert-#{message_type}") %> 
+<div class= "wrapper">
+  <div class= "top-bar">
+    <div class= "container">
+      <div class= "row">
+        <div class= "col-md-2">
+          <%= link_to image_tag("counti_logo_test4.png", size: "110x30"), root_path %> 
+        </div>
+        <div class= "top-bar-right">
+          <%= render "layouts/header" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class= "bottom">
+    <% flash.each do |message_type, message| %>
+      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %> 
     <% end %>
-
-<%= yield %>
-
+    <%= yield %>
+  </div>
+</div>
+  <div class= "footer">
+    <%= render "layouts/footer" %>
+  </div>
 </body>
 </html>
+
+<%# meta_tags, viewport for bootstrap, favicon.ico, google_analytics?  %>

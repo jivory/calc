@@ -11,10 +11,12 @@ module MealsHelper
   end
 
   def how_much_left(calories, goal)
-    if calories < goal
-      return "#{goal-calories} left"
+    @number = (goal-calories).abs
+    @comma_number = number_with_delimiter(@number, :delimiter => ",")
+    if calories < goal 
+      return "(#{@comma_number} left)"
     elsif calories > goal
-      return "#{calories-goal} over"
+      return "(#{@comma_number} over)"
     else
       return nil
     end

@@ -1,0 +1,102 @@
+<% provide(:title, 'Login') %>
+
+<body>
+  <div class="wrapper full-page-wrapper page-auth page-login text-center">
+    <div class="inner-page">
+      <div class="logo">
+        <%= image_tag("meal_free.png", size: "50x50")%>
+        <%= image_tag("drink_free2.png", size: "50x50")%>
+        <%= image_tag("apple_free.png", size: "50x50")%>
+        <%= image_tag("dessert_free.png", size: "50x50")%>
+      </div>
+        <div class="login-box center-block">
+          <div class="form-horizontal">
+            <p class="title">Log In</p>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <div class="input-group">
+                    <%= f.email_field :email, class:"form-control", autofocus: true, placeholder: "email" %>
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                  </div>
+                </div>
+              </div>
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <div class="input-group">
+                      <%= f.password_field :password, class:"form-control", autocomplete: "off", placeholder:"password" %>
+                      <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    </div>
+                  </div>
+                </div>
+                
+                <% if devise_mapping.rememberable? -%>
+                    
+                    <label class="fancy-checkbox">
+                      <%= f.check_box :remember_me, class:"fancy-checkbox" %>
+                      <span class="something_special">
+                        <%= f.label :remember_me, "Remember me next time" %>
+                      </span>
+                    </label>
+                    
+                <% end -%>
+
+
+                <%= f.submit "Log in", class:"fa fa-arrow-circle-o-right", class:"btn btn-custom-primary btn-lg btn-block btn-auth"  %>
+            <% end %>
+          <div class="links">
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  
+    
+
+
+
+
+         <!--p class="title">Use your username</p>
+          <div class="form-group">
+            <label for="username" class="control-label sr-only">Username</label>
+            <div class="col-sm-12">
+              <div class="input-group">
+                <input type="text" placeholder="username" id="username" class="form-control">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              </div>
+            </div>
+          </div>
+          <label for="password" class="control-label sr-only">Password</label>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <div class="input-group">
+                <input type="password" placeholder="password" id="password" class="form-control">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+              </div>
+            </div>
+          </div>
+          <label class="fancy-checkbox">
+            <input type="checkbox">
+            <span>Remember me next time</span>
+          </label>
+          <button class="btn btn-custom-primary btn-lg btn-block btn-auth"><i class="fa fa-arrow-circle-o-right"></i> Login</button>
+        </form>
+
+        <div class="links">
+          <%= render "devise/shared/links" %>
+          <%# <p><a href="#">Forgot Username or Password?</a></p> %>
+          <%# <p><a href="#">Create New Account</a></p> %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">&copy; 2014-2015 jIvory</footer>
+
+
+</body>
+
+</html>
+

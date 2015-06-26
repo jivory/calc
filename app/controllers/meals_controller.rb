@@ -29,7 +29,7 @@ before_action :correct_user, only: [:show]
   		elsif meal.meal_type == "snack"
   			@meals_snacks << meal
       elsif meal.meal_type == "dessert"  
-        @meal_desserts << meal
+        @meals_desserts << meal
   		end
   	end
 
