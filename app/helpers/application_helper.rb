@@ -36,6 +36,10 @@ module ApplicationHelper
       end
   end
 
+  def hyphenate(number)
+    number_with_delimiter(number, :delimiter => ",")
+  end
+
 end
 
 

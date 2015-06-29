@@ -1,43 +1,109 @@
-<h2> Update Your Calorie Goal </h2> 
+<% provide(:title, 'Edit Goal') %>
 
-<%= form_for @goal do |f| %>
-	
-	<%= f.label :goal_name, "Goal Name" %>
-	<%= f.text_field :goal_name %><br />
+<body>
+  <div class="wrapper full-page-wrapper page-auth page-login text-center">
+    <div class="inner-page">
+      <div class="logo">
+        <%= image_tag("meal_free.png", size: "50x50")%>
+        <%= image_tag("drink_free2.png", size: "50x50")%>
+        <%= image_tag("apple_free.png", size: "50x50")%>
+        <%= image_tag("dessert_free.png", size: "50x50")%>
+      </div>
+      <div class="login-box center-block">
+        <div class="form-horizontal">
+          <%= form_for(@goal) do |f| %>
+          <div class="form-group">
+	            <div class="col-sm-12 center-form">
+	              <div class="input-group center-form">
+	                <% @sex.each do |name, result| %>
+										<%= f.radio_button(:sex, result) %>  <%= name %>
+									<% end %>
+	              </div>
+	            </div>
+	      		</div>
+          <div class="form-group">
+              <div class="col-sm-12">
+                <div class="input-group">
+									<%= f.text_field :goal_name, :autofocus => true, class:"form-control", placeholder: "goal name" %>
+                  <span class="input-group-addon">
+                  	<i class="fa fa-plus-circle">
+                  	</i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="input-group">
+									<%= f.number_field :age, class:"form-control", placeholder: "age" %>
+                  <span class="input-group-addon">
+                  	<i class="fa fa-calendar">
+                  	</i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12 center-form">
+                <div class="input-group">
+									<%= f.number_field :weight, class:"form-control", placeholder: "weight" %>
+									<span class="input-group-addon">
+                		<i class="fa fa-calendar">
+                		</i>
+                	</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="input-group">
+									<%= f.number_field :desired_weight, class:"form-control", placeholder: "desired weight" %>
+                  <span class="input-group-addon">
+                  	<i class="fa fa-calendar">
+                  	</i>
+                  </span>
+                </div>
+              </div>
+            </div>        
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="input-group center-form">
+                	<%= f.label :activity, "Activity Level", class: "fa-lg center" %>
+                	<br>
+                	<%= link_to "(more info)", more_info_path, class: "exponent bold" %>
+                	<br>
+									<% @activity.each do |name, result| %>
+										<%= f.radio_button(:activity, result) %>  <%= name %>
+									<% end %>
+                </div>
+              </div>
+            </div>
+            <%= f.submit "Update", class: "btn btn-custom-primary btn-lg btn-block btn-auth"%>
+            <div class= "or">
+            	— OR —
+            </div>
+            <br>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="input-group">
+									<span class="input-group-addon">
+                  	<%= f.check_box :use_custom_goal %>
+                  </span>
+                  <%= f.number_field :custom_calories, class:"form-control", placeholder: "enter your own goal" %>
+                </div>
+              </div>
+            </div> 
+            <%= f.submit "Update", class: "btn btn-custom-primary btn-lg btn-block btn-auth blue-background"%>  
+        	<% end %>
+  			</div>
+			</div>
+		</div>
+	</div>
+</body>
 
-	<%= f.label :age %>
-	<%= f.number_field :age %><br />
-
-	<%= f.label :sex %>
-	<% @sex.each do |name, result| %>
-	<%= f.radio_button(:sex, result) %>  <%= name %>
-	<% end %><br>
-
-	<%= f.label :weight, "Current Weight" %>
-	<%= f.number_field :weight %> lbs<br />
 
 
-	<%= f.label :desired_weight, "Desired Weight" %>
-	<%= f.number_field :desired_weight %><br />
 
-	<%= f.label :height %>
-	<%= f.number_field :height %> inches<br />
 
-	<%= f.label :activity, "Activity Level" %> <%= link_to "More Info", more_info_path %><br>
-	<% @activity.each do |name, result| %>
-	<%= f.radio_button(:activity, result) %>  <%= name %>
-	<% end %><br><br>
-<%= f.submit "Update" %><br><br> 
-	
-or <br><br>
-  <%= f.label :custom_calories, "Use A Custom Calorie Goal" %>
-  <%= f.check_box :use_custom_goal %>
-  <%= f.number_field :custom_calories %><br><br>
 
-<%= f.submit "Update" %><br><br>
-
-<%= f.label :comments %><br>
-<%= f.text_area :comments, size: "50x5" %> 
-
-<% end %>
 

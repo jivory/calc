@@ -1,57 +1,53 @@
-<%= link_to "New Goal", new_goal_path %><br><br>
+<% provide(:title, 'Goals') %>
 
-<% @goals.each do |goal| %>
+<head>
+	<div class= "right spacer">
+		<%= link_to "+New Goal", new_goal_path, class: "btn btn-custom-primary btn-lg btn-auth" %>
+	</div>
+		<div class= "center">
+			<% @goals.each do |goal| %>
+				<% if goal.current_goal == true %>
+					<h1 class = "blue">
+				<% else %>
+					<h1>
+				<% end %>
+						<%= goal.goal_name %>
+						=
+						<%= hyphenate(goal.daily_calories) %>
+					</h1>
+					<div class = "spacer">
+					</div>
+					<% @goal_attributes.each do |name, attribute| %>
+						<% if goal.send(attribute) != nil %>
+							<div class = "h4">
+								<%= "#{name}:" %>
+								<%= link_to "#{goal.send(attribute)}", edit_goal_path(goal), class: "bold" %>
+								</div>
+						<% end %>
+				<% end %>
+				<div class = "h6">
+					<%# if goal.current_goal == false %>
+						<%# link_to "(Use BMR as Active Goal)", goals_set_bmr_as_goal_path(goal), class: "bold"  %>
+					<%# end %>
 
-<% if !goal.updated_at.nil?%>
-<%= "Last Updated: #{goal.updated_at.strftime('%D')}" %> <br> 
-<% end %>
-
-<% if !goal.current_goal.nil?%>
-<%= "Active Goal: #{goal.current_goal}" %> <br> 
-<% end %>
-
-<% if !goal.goal_name.nil?%>
-<%= "Goal Name: #{goal.goal_name}" %> <br> 
-<% end %>
-
-<% if !goal.goal_type.nil?%>
-<%= "Goal Type: #{goal.goal_type.capitalize}" %> <br> 
-<% end %>
-
-<% if !goal.weight.nil?%>
-<%= "Current Weight: #{goal.weight}" %> <br> 
-<% end %>
-
-<% if !goal.desired_weight.nil?%>
-<%= "Desired Weight: #{goal.desired_weight}" %> <br> 
-<% end %>
-
-<% if !goal.bmr_calories.nil?%>
-<%= "BMR Calculated Calories: #{goal.bmr_calories}" %> 
-<% if !goal.bmr_calories.nil? && !goal.current_goal? && goal.bmr_calories != goal.daily_calories %>
-<%= link_to "Set as Active Goal", goals_set_bmr_as_goal_path(@goal)%> 
-<% end %>
-<br> 
-<% end %>
-
-<% if !goal.custom_calories.nil?%>
-<%= "Custom Calories: #{goal.custom_calories}" %> 
-<% if !goal.custom_calories.nil? && !goal.current_goal? && goal.custom_calories != goal.daily_calories%>
-<%= link_to "Set as Active Goal", goals_set_custom_as_goal_path(@goal)%> 
-<% end %>
-<br> 
-<% end %>
-
-<% if !goal.daily_calories.nil?%>
-<%= "Current Calorie Goal: #{goal.daily_calories}" %> <br><br> 
-<% end %>
-
-<%= link_to "View", goal_path(goal) %> 
-<%= link_to "Edit", edit_goal_path(goal) %> 
-<%= link_to "Delete", goal, method: :delete %> 
-<br><br><br><br> 
-
-<% end %>
+					
+					<% if goal.use_custom_goal == true && goal.bmr_calories != nil || goal.current_goal == false && goal.bmr_calories != nil%>
+						<%= link_to "(Use BMR as Active Goal)", goals_set_bmr_as_goal_path(goal), class: "bold"  %>
+					<% end %><% if goal.use_custom_goal == false && goal.custom_calories != nil || goal.current_goal == false && goal.custom_calories != nil%>
+						<%= link_to "(Use Custom as Active Goal)", goals_set_custom_as_goal_path(goal), class: "bold"  %>
+					<% end %>
+					
+				</div> 
+				<span class= "h5">		
+					<%= link_to "View", goal_path(goal), class: "bold" %> 
+					<%= link_to "Edit", edit_goal_path(goal), class: "bold" %> 
+					<%= link_to "Delete", goal, method: :delete, class: "bold" %> 
+				</span>
+				<div class= "spacer-3x">
+				</div>
+			<% end %>
+		</div>
+</head>
 
 
 

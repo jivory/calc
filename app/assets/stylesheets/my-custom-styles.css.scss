@@ -102,3 +102,44 @@ h1 {
 	border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
 }
+
+.bold {
+	font-weight: 200;
+}
+.shadow {
+	text-shadow: .5px .5px #efefef;
+}
+
+.fix-select-menu {
+	overflow: hidden;
+	-webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+}
+
+.or {
+	padding-top: 10px;
+  font-size: 2em;
+  font-family: "latolight";
+  text-align: center;
+}
+
+P.column {
+	margin-left: auto;
+  margin-right: auto;
+  width: 75em;
+  text-align: center;
+}
+
+.blue {
+	color: #489dc1;
+}
+
+.right {
+   text-align: right;
+   padding-right: 15px;
+} 
+
+.blue-background {
+	background-color: #489dc1; 
+}

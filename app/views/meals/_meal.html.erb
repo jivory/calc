@@ -9,7 +9,7 @@
 	  	<h2>
 		  	<%= link_to "+", new_meal_path(value: date.strftime('%Y-%m-%d'))%>
 		  	<%= hidden_field_tag @total_cal = total_calories(date - 1.day, date) %> 
-		  	<%= number_with_delimiter(@total_cal, :delimiter => ",") %> 
+		  	<%= hyphenate(@total_cal) %> 
 		  	calories
 		  		<% if @total_cal <= @current_goal.daily_calories %>
 		  			<span class="green">
@@ -33,15 +33,16 @@
 			  	 		<%= link_to image_tag("apple_free.png", size: "50x50"), new_meal_path(value: date.strftime('%Y-%m-%d'), meal: time, type: "snack") %>
 			  	 		<%= link_to image_tag("dessert_free.png", size: "50x50"), new_meal_path(value: date.strftime('%Y-%m-%d'), meal: time, type: "dessert") %>
 			  	 		
-			  	 		<div class="spacer"></div>
+			  	 		<div class="spacer">
+			  	 		</div>
 			  	 		
-				  	<%# go thru meal type "meals" to show meal calores, then do "drinks", lastly "snacks" %> 		
+				  	<%# go thru meal type "meals" to show meal calores, then do "drinks", "snacks" and "desserts" %> 		
 						<% @meals_meals.each do |meal| %>
 							<% if meal.day_of_meal.strftime('%Y-%m-%d') == date.strftime('%Y-%m-%d') && meal.meal_time == time %>
-							  <%= link_to meal.meal_type.capitalize, edit_meal_path(meal) %> <%= meal.calories %> 
+							  <%= link_to meal.meal_type.capitalize, edit_meal_path(meal), class: "bold shadow" %> 
+							  <%= meal.calories %> 
 								  <span class="exponent">
-								  	<%# link_to "", edit_meal_path(meal), class: "fa fa-pencil fa-rotate-180" %> 
-							  		<%= link_to "", meal, method: :delete, class: "fa fa-times"  %>	
+							  		<%= link_to "", meal, method: :delete, class: "fa fa-times" %>	
 							  		<br>		  
 							  	</span>
 							<% end %>
@@ -49,9 +50,9 @@
 
 						<% @meals_drinks.each do |meal| %>
 							<% if meal.day_of_meal.strftime('%Y-%m-%d') == date.strftime('%Y-%m-%d') && meal.meal_time == time %>
-							  <%= link_to meal.meal_type.capitalize, meal %> <%= meal.calories %> 
+							  <%= link_to meal.meal_type.capitalize, edit_meal_path(meal), class: "bold shadow" %> 
+							  <%= meal.calories %> 
 							  	<span class="exponent">
-								  	<%= link_to "", edit_meal_path(meal), class: "fa fa-pencil fa-rotate-180" %> 
 							  		<%= link_to "", meal, method: :delete, class: "fa fa-times"  %>	
 							  		<br>		  
 							  	</span>		  
@@ -60,9 +61,9 @@
 
 						<% @meals_snacks.each do |meal| %>
 							<% if meal.day_of_meal.strftime('%Y-%m-%d') == date.strftime('%Y-%m-%d') && meal.meal_time == time %>
-							  <%= link_to meal.meal_type.capitalize, meal %> <%= meal.calories %> 
+							  <%= link_to meal.meal_type.capitalize, edit_meal_path(meal), class: "bold shadow" %> 
+							  <%= meal.calories %> 
 							  	<span class="exponent">
-								  	<%= link_to "", edit_meal_path(meal), class: "fa fa-pencil fa-rotate-180" %> 
 							  		<%= link_to "", meal, method: :delete, class: "fa fa-times"  %>	
 							  		<br>		  
 							  	</span>	  
@@ -71,9 +72,9 @@
 
 						<% @meals_desserts.each do |meal| %>
 							<% if meal.day_of_meal.strftime('%Y-%m-%d') == date.strftime('%Y-%m-%d') && meal.meal_time == time %>
-							  <%= link_to meal.meal_type.capitalize, meal %> <%= meal.calories %> 
+							  <%= link_to meal.meal_type.capitalize, edit_meal_path(meal), class: "bold shadow" %> 
+							  <%= meal.calories %> 
 							  	<span class="exponent">
-								  	<%= link_to "", edit_meal_path(meal), class: "fa fa-pencil fa-rotate-180" %> 
 							  		<%= link_to "", meal, method: :delete, class: "fa fa-times"  %>	
 							  		<br>		  
 							  	</span>		  

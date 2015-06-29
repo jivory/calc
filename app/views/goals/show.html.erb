@@ -1,37 +1,56 @@
-<% @month.each do |day| %>
-	<%= day.strftime('%m/%d') %> 
-	<div style="display:none"><%= total_calories(day - 1.day, day) %></div>
-	<%= "  -  " %>
-	<% end %>
-<br><br>
-Estimated weight gain/loss <br>
-Past Week: <%= pluralize((total_calories(@day-7.day, @day) - @current_goal.daily_calories * 7) / @calories_in_pound, "pound") %> <br>
-Past Month: <%= pluralize((total_calories(@month.last, @day) - @current_goal.daily_calories * @month.count) / @calories_in_pound, "pound") %>
+<% provide(:title, 'My Goal') %>
 
-<%# runs thru all goal characteristics as defined in the goals_controller%>
-<br><br>
-<% @goal_attributes.each do |name, value| %>
-<% if !value.nil? %>
-<%= "#{name}: " %><%= value %><br>
-<% end %>
-<% end %>
+<body>
+	<div class= "center">
+		<div style="display:none">
+			<% @month.each do |day| %>
+				<%= day.strftime('%m/%d') %> 
+				<%= total_calories(day - 1.day, day) %>
+				<%= "  -  " %>
+			<% end %>
+		</div>
+		<h1>
+			<%= @goal.goal_name %>
+			=
+			<%= hyphenate(@goal.daily_calories) %>/day
+		</h1>
+		<div class= "spacer">
+		</div>
+			<%# runs thru all goal characteristics as defined in the goals_controller%>
+			<% @goal_attributes.each do |name, value| %>
+				<% if !value.nil? %>
+					<div class= "h4 bold">
+						<%= "#{name}: " %>
+						<span class= "blue">
+							<%= link_to value, edit_goal_path, class: "bold" %>
+						</span>
+					</div>
+				<% end %>
+			<% end %>
 
-<%# shows button to switch between custom and calculated calorie goals %>
-<% if @goal.use_custom_goal == false && @goal.custom_calories != nil %>
-(<%= link_to "Use Custom Goal", goals_set_custom_as_goal_path(@goal) %>) <br>
-<% elsif @goal.use_custom_goal == true && @goal.bmr_calories != nil %>
-(<%= link_to "Use Calculated Goal", goals_set_bmr_as_goal_path(@goal) %>) <br>
-<% end %> <br><br>
+			<span class= "h5">
 
-<%= link_to "Edit", edit_goal_path %> 
-<%= link_to "History", goals_path %> 
-<%= link_to "New Goal", new_goal_path %><br>
-
-<% if @goal.custom_calories.nil? %> 
-<%= "Want to enter a custom calorie goal? " %>
-<%= link_to "Click here", edit_goal_path(@goal) %>
-<% end %>
-
-
+				<%# shows button to switch between custom and calculated calorie goals %>
+				<% if @goal.use_custom_goal == false && @goal.custom_calories != nil %>
+				<%= link_to "(Use Custom Goal)", goals_set_custom_as_goal_path(@goal), class: "bold"  %>
+				<br>
+				<% elsif @goal.use_custom_goal == true && @goal.bmr_calories != nil %>
+				<%= link_to "(Use Calculated Goal)", goals_set_bmr_as_goal_path(@goal), class: "bold"  %>
+				<br>
+				<% end %> 
+				<br>
+				<br>
+				<%= link_to "Edit", edit_goal_path, class: "bold" %> 
+				<%= link_to "History", goals_path, class: "bold" %> 
+				<%= link_to "New Goal", new_goal_path, class: "bold"  %>
+				<br>
+				<% if @goal.custom_calories.nil? %> 
+				<%= "Want to enter a custom calorie goal? " %>
+				<%= link_to "Click here", edit_goal_path(@goal), class: "bold"  %>
+				<% end %>
+			</span>	
+		</div>
+	</div>
+</body>
 
 

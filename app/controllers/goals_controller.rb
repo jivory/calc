@@ -4,17 +4,12 @@ include GoalsHelper
 	def show
 		@user = current_user
 		@goal = Goal.find(params[:id])
-		@goal_attributes =  [["Goal Id", @goal.id],
-												 ["Goal Name", @goal.goal_name],
-												 ["Goal Type", @goal.goal_type == nil ? @goal.goal_type : @goal.goal_type.capitalize ],
+		@goal_attributes =  [["Goal Type", @goal.goal_type == nil ? @goal.goal_type : @goal.goal_type.capitalize ],
 												 ["Current Weight", @goal.weight],
 												 ["Desired Weight", @goal.desired_weight],
-												 ["BMR Calculated Calories", @goal.bmr_calories],
-												 ["Custom Calories", @goal.custom_calories],
-												 ["Use Custom Goal", @goal.use_custom_goal],												 
-												 ["Active Goal", @goal.current_goal],
-												 ["Current Calorie Goal", @goal.daily_calories],
-												 ["Comments", @goal.comments]]
+												 ["BMR Calculated Calories", hyphenate(@goal.bmr_calories)],
+												 ["Custom Calories", hyphenate(@goal.custom_calories)],												 
+												 ["Active Goal", @goal.current_goal]]
 
 		@current_goal = current_user.goals.find_by(" current_goal = ? ", true)
 		@calories = 0
@@ -36,7 +31,14 @@ include GoalsHelper
 	end
 
 	def index
-		@goals = Goal.where(" user_id = ? ", current_user.id).order(current_goal: :desc).order(:updated_at)
+		@goals = Goal.where(" user_id = ? ", current_user.id).order(current_goal: :desc).order(updated_at: :desc)
+		@goal_attributes = [["Last Updated", "updated_at"],
+												["Goal Type", "goal_type"],
+												["Current Weight", "weight"],
+												["Desired Weight", "desired_weight"],
+												["BMR Calculated Calories", "bmr_calories"],
+												["Custom Calories", "custom_calories"],												 
+												["Active Goal", "current_goal"]]
 	end
 
 	def new
