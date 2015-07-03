@@ -11,6 +11,7 @@
 		  	<%= hidden_field_tag @total_cal = total_calories(date - 1.day, date) %> 
 		  	<%= hyphenate(@total_cal) %> 
 		  	calories
+		  	<% if @current_goal != nil %>
 		  		<% if @total_cal <= @current_goal.daily_calories %>
 		  			<span class="green">
 		  		<% else  %>
@@ -18,7 +19,7 @@
 		  		<% end %>
 		  				<%= how_much_left(@total_cal, @current_goal.daily_calories) %>
 		  			</span>
-		  	  
+		  	<% end %>
 		  </h2>
 		<div class="spacer"></div>
 	  <%# cycle thru meal times (breakfast, lunch, dinner) for the sake of labeling and organizing the daily calories %>
