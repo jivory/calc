@@ -2,10 +2,7 @@
   <div class="wrapper full-page-wrapper page-auth page-login text-center">
     <div class="inner-page">
       <div class="logo">
-        <%= image_tag("meal_free.png", size: "50x50")%>
-        <%= image_tag("drink_free2.png", size: "50x50")%>
-        <%= image_tag("apple_free.png", size: "50x50")%>
-        <%= image_tag("dessert_free.png", size: "50x50")%>
+        <%= link_to image_tag("meal_types.png", size: "200x50"), root_path %>
       </div>
        <div class="header-error">
         <%= devise_error_messages! %>

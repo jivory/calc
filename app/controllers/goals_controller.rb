@@ -39,6 +39,17 @@ include GoalsHelper
 												["BMR Calculated Calories", "bmr_calories"],
 												["Custom Calories", "custom_calories"],												 
 												["Active Goal", "current_goal"]]
+		@goal_test = []
+		@goals.each do |goal|			
+			@test  = [["Last Updated", goal.updated_at],
+								["Goal Type", goal.goal_type],
+								["Current Weight", goal.weight],
+								["Desired Weight", goal.desired_weight],
+								["BMR Calculated Calories", goal.bmr_calories],
+								["Custom Calories", goal.custom_calories],												 
+								["Active Goal", goal.current_goal]]
+			@goal_test << @test
+			end
 	end
 
 	def new

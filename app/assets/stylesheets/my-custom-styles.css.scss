@@ -76,6 +76,10 @@ h1 {
 	padding-top: 15px;
 }
 
+.spacer-2x {
+	padding-top: 30px;
+}
+
 .spacer-3x {
 	padding-top: 45px;
 }
@@ -143,3 +147,65 @@ P.column {
 .blue-background {
 	background-color: #489dc1; 
 }
+
+.statement {
+	background-color: #fff;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	font-style: oblique;
+	font-family: "Lato", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-weight: 100;
+	color: #489dc1;
+	letter-spacing: 0.02em;
+}
+
+/* Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif; */
+
+.title-logo {
+	padding-top: 20px;	
+}
+
+.bottom {
+	vertical-align: bottom;
+}
+
+.lgr {
+	font-size: 150%;
+	vertical-align: center;
+}
+
+.heading-list {
+	display: inline;
+	list-style: none;
+}
+
+.less-padding {
+	padding: 6px 0px;
+}
+
+.left {
+  text-align: left;
+  padding-left: 15px;
+} 
+
+.bigger {
+	border-radius: 15px;
+	width: 25%;
+}
+
+.inner-page-2x {
+	padding-bottom: 25em;
+}
+
+.highlight {
+	background-color: #efefef;
+}
+
+.column-help {
+	margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  text-align: center;
+}
+

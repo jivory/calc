@@ -1,7 +1,41 @@
-<div>
-  <div class="header">We Cannot Help</h3>
-    <center>
-    	<iframe width="1020" height="630" src="https://www.youtube.com/embed/Q34z5dCmC4M" frameborder="0" allowfullscreen></iframe>
-    </center>
-</div>
+<% provide(:title, 'Help') %>
+<body>
+
+	<div class="wrapper full-page-wrapper page-auth page-login">
+		<div class= "text-center spacer">
+			<h1> <%= link_to "We Cannot Help", root_path %>
+			</h1>
+  		<iframe width="1020" height="630" src="https://www.youtube.com/embed/Q34z5dCmC4M" frameborder="0" allowfullscreen>
+  		</iframe>
+  		<div class= "spacer">
+  		</div>
+
+  		<h4>
+  			But seriously
+  			<i class="fa fa-level-down">
+  			</i>
+  		</h4>
+			
+      <div class= "spacer">
+      </div>
+      <h1>
+			It is not complicated. 
+			</h1>
+			<div class= "spacer-2x">
+      </div>
+      <p class= "lgr column-help">
+      	You login (or sign up), click the plus button or one of the food icons to enter your calories for the day. You don't look up every single thing you ate. You just guesstimate. Remain disciplined and don't spend too much time worrying about the minute details. Should you honestly care if your calorie count is correct to the 4th decimal place? We don't think so. Dieting is not an exact science. It is a disciplined and individual science, so track your calories, see what works, and remain disciplined. Keep counting!  
+			</p>
+			<div class= "spacer-3x">
+     	</div>
+     	<div class="inner-page-2x">
+     		<%= link_to "Sign Up", new_user_registration_path, class: "btn btn-custom-primary btn-lg btn-auth bigger" %>
+     		<%= link_to "Login", new_user_session_path, class: "btn btn-custom-primary btn-lg btn-auth bigger" %>
+     		<div class="spacer-2x">
+     			<%= link_to image_tag("counti_logo_150_dark.png", size: "204x68"), root_path %>
+     		</div>
+     	</div>
+	  </div>
+	</div>
+</body>
    

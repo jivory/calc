@@ -6,8 +6,10 @@ include ActionView::Helpers::NumberHelper
   layout :layout_by_resources
 
   def layout_by_resources
-  	if controller_name == "sessions" && action_name == "new"
+  	if controller_name == "sessions" || controller_name == "registrations" || controller_name == "passwords" || controller_name == "unlocks" || controller_name == "confirmations"
   		"blank"
+    elsif controller_name == "welcome" && action_name == "home" || action_name == "help"
+      "blank"
   	else
   		"application"
   	end
