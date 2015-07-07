@@ -23,12 +23,17 @@
   <!-- Fav and touch icons -->
 
 </head>
-<body>
-  	<% flash.each do |message_type, message| %>
-       <%= content_tag(:div, message, class: "alert alert-#{message_type}") %> 
+<div class= "full-page-wrapper wrapper">
+  <div class= "bottom">
+    <% flash.each do |message_type, message| %>
+      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %> 
     <% end %>
-<%= yield %>
-
+    <%= yield %>
+  </div>
+</div>
+  <div class= "footer">
+    <%= render "layouts/footer" %>
+  </div>
 </body>
 </html>
 
