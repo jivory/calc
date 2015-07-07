@@ -149,7 +149,7 @@ P.column {
 	border-color: #efefef;
 }
 
-.statement {
+h2 .statement {
 	background-color: #fff;
 	padding-top: 1em;
 	padding-bottom: 6px;
@@ -159,6 +159,7 @@ P.column {
 	font-weight: 100;
 	letter-spacing: 0.02em;
 	text-shadow: 1px 1px #efefef;
+	color: #489dc1
 }
 
 /* Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif; */
@@ -227,3 +228,6 @@ P.column {
 	width: 100%;
 	height: 100%;
 }
+ .page-auth .center-block .goal {
+    width: 40%;
+  }
