@@ -35,8 +35,9 @@
                     </div>
                   </div>
                 </div>
-                <%= f.submit "Sign Up", class: "fa fa-arrow-circle-o-right", class: "btn btn-custom-primary btn-lg btn-block btn-auth"  %>
-                <i class: "fa fa-arrow-circle-o-right"> </i>
+                <%= button_tag(type: 'submit', class: "btn btn-custom-primary btn-lg btn-block btn-auth") do %>
+                <i class="fa fa-arrow-circle-o-right"></i> Sign Up
+              <% end %>
             <% end %>
           <div class="links">
             <%= render "devise/shared/links" %>

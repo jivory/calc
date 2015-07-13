@@ -19,7 +19,9 @@
                   </div>
                 </div>
               </div>
-                <%= f.submit "Resend unlock instructions", class: "fa fa-arrow-circle-o-right", class: "btn btn-custom-primary btn-lg btn-block btn-auth"  %>
+                <%= button_tag(type: 'submit', class: "btn btn-custom-primary btn-lg btn-block btn-auth") do %>
+                  <i class="fa fa-arrow-circle-o-right"></i> Resend unlock instructions
+                <% end %>
             <% end %>
           <div class="links">
             <%= render "devise/shared/links" %>

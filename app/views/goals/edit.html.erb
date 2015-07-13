@@ -75,7 +75,9 @@
                 </div>
               </div>
             </div>
-            <%= f.submit "Update", class: "btn btn-custom-primary btn-lg btn-block btn-auth"%>
+            <%= button_tag(type: 'submit', class: "btn btn-custom-primary btn-lg btn-block btn-auth") do %>
+              <i class="fa fa-arrow-circle-o-right"></i> Update
+            <% end %>
             <div class= "or">
             	— OR —
             </div>
@@ -90,7 +92,9 @@
                 </div>
               </div>
             </div> 
-            <%= f.submit "Update", class: "btn btn-custom-primary btn-lg btn-block btn-auth blue-background"%>  
+            <%= button_tag(type: 'submit', class: "btn btn-custom-primary btn-lg btn-block btn-auth") do %>
+              <i class="fa fa-arrow-circle-o-right"></i> Update
+            <% end %>
         	<% end %>
   			</div>
 			</div>
