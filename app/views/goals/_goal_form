@@ -1,0 +1,115 @@
+<%= form_for(@goal) do |f| %>
+  <div class="form-group">
+    <div class="col-sm-12 center-form">
+      <div class="input-group center-form">
+        <div class= "btn-group-justified">
+        <% @sex.each do |name, result| %>
+          <%= f.radio_button(:sex, result, class: "col-lg-9") %> <%= name %>
+        <% end %>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+      <div class="input-group">
+        <%= f.text_field :goal_name, :autofocus => true, class:"form-control", placeholder: "goal name" %>
+        <span class="input-group-addon">
+          <%= image_tag("tag_blue.png", class: "form_icons") %>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+      <div class="input-group">
+        <%= f.number_field :age, class:"form-control", placeholder: "age" %>
+        <span class="input-group-addon">
+          <%= image_tag("arrow_fwd_blue.png", class: "form_icons") %>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+      <div class="input-group">
+        <%= f.number_field :height, class:"form-control", placeholder: "height in inches" %>
+        <span class="input-group-addon">
+          <%= image_tag("drop_down_blue.png", class: "form_icons") %>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12 center-form">
+      <div class="input-group">
+        <%= f.number_field :weight, class:"form-control", placeholder: "weight" %>
+        <span class="input-group-addon">
+          <%= image_tag("drop_down_blue.png", class: "form_icons") %>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+      <div class="input-group">
+        <%= f.number_field :desired_weight, class:"form-control", placeholder: "desired weight" %>
+        <span class="input-group-addon">
+          <%= image_tag("target2_blue.png", class: "form_icons") %>
+        </span>
+      </div>
+    </div>
+  </div>        
+  <div class="form-group">
+    <div class="col-sm-12">
+      <div class="input-group center-form">
+        <%= f.label :activity, "Activity Level", class: "fa-lg center" %>
+        <br>
+        <%= link_to "(more info)", more_info_path, class: "exponent bold" %>
+        <br>
+        <% @activity.each do |name, result| %>
+          <%= f.radio_button(:activity, result) %>  <%= name %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%= button_tag(type: 'submit', class: "btn btn-custom-primary btn-lg btn-block btn-auth") do %>
+    <i class="fa fa-arrow-circle-o-right"></i> 
+    <% if action_name == "new" %>
+      Calculate 
+    <% else %>
+      Update
+    <% end %>
+  <% end %>
+  <div class= "or spacer-2x">
+    — OR —
+  </div>
+  <div class="spacer form-group">
+    <div class="col-sm-12">
+      <div class="input-group">
+        <%= f.text_field :goal_name, :autofocus => true, class:"form-control", placeholder: "goal name" %>
+        <span class="input-group-addon">
+          <%= image_tag("tag_blue.png", class: "form_icons") %>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <%= f.check_box :use_custom_goal %>
+        </span>
+        <%= f.number_field :custom_calories, class: "form-control", placeholder: "enter your own goal" %>
+      </div>
+    </div>
+  </div> 
+  <%= button_tag(type: 'submit', class: "btn blue-background btn-lg btn-block btn-auth") do %>
+    <i class="fa fa-arrow-circle-o-right"></i> 
+    <% if action_name == "new" %>
+      Save
+    <% else %>
+      Update
+    <% end %>
+  <% end %>
+<% end %>

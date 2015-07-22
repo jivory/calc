@@ -7,111 +7,13 @@
         <%= link_to image_tag("meal_types.png", size: "200x50"), root_path %>
       </div>
       <!--div class= "row">
-        <div class= "col-md-9">-->
-        <div class="login-box center-block">
-          <div class="form-horizontal">
-            <%= form_for(@goal) do |f| %>
-            <div class="form-group">
-              <div class="col-sm-12 center-form">
-                <div class="input-group center-form">
-                  <% @sex.each do |name, result| %>
-  									<%= f.radio_button(:sex, result) %>  <%= name %>
-  								<% end %>
-                </div>
-              </div>
-  	      	</div>
-            <div class="form-group">
-              <div class="col-sm-12">
-                <div class="input-group">
-  								<%= f.text_field :goal_name, :autofocus => true, class:"form-control", placeholder: "goal name" %>
-                  <span class="input-group-addon">
-                  	<i class="fa fa-plus-circle">
-                  	</i>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-12">
-                <div class="input-group">
-  								<%= f.number_field :age, class:"form-control", placeholder: "age" %>
-                  <span class="input-group-addon">
-                  	<i class="fa fa-calendar">
-                  	</i>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-12">
-                <div class="input-group">
-                  <%= f.number_field :height, class:"form-control", placeholder: "height in inches" %>
-                  <span class="input-group-addon">
-                    <i class="fa fa-calendar">
-                    </i>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-12 center-form">
-                <div class="input-group">
-  								<%= f.number_field :weight, class:"form-control", placeholder: "weight" %>
-  								<span class="input-group-addon">
-                		<i class="fa fa-calendar">
-                		</i>
-                	</span>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-12">
-                <div class="input-group">
-  								<%= f.number_field :desired_weight, class:"form-control", placeholder: "desired weight" %>
-                  <span class="input-group-addon">
-                  	<i class="fa fa-calendar">
-                  	</i>
-                  </span>
-                </div>
-              </div>
-            </div>        
-            <div class="form-group">
-              <div class="col-sm-12">
-                <div class="input-group center-form">
-                	<%= f.label :activity, "Activity Level", class: "fa-lg center" %>
-                	<br>
-                	<%= link_to "(more info)", more_info_path, class: "exponent bold" %>
-                	<br>
-  								<% @activity.each do |name, result| %>
-  									<%= f.radio_button(:activity, result) %>  <%= name %>
-  								<% end %>
-                </div>
-              </div>
-            </div>
-            <%= button_tag(type: 'submit', class: "btn btn-custom-primary btn-lg btn-block btn-auth") do %>
-              <i class="fa fa-arrow-circle-o-right"></i> Calculate My Goal
-            <% end %>
-            <div class= "or">
-            	— OR —
-            </div>
-            <br>
-            <div class="form-group">
-              <div class="col-sm-12">
-                <div class="input-group">
-  								<span class="input-group-addon">
-                  	<%= f.check_box :use_custom_goal %>
-                  </span>
-                  <%= f.number_field :custom_calories, class:"form-control", placeholder: "enter your own goal" %>
-                </div>
-              </div>
-            </div> 
-            <%= button_tag(type: 'submit', class: "btn btn-custom-primary btn-lg btn-block btn-auth") do %>
-              <i class="fa fa-arrow-circle-o-right"></i> Save
-            <% end %>
-        	<% end %>
-  			</div>
-  		</div>
-  	</div>
+      <div class= "col-md-9">-->
+      <div class="login-box center-block">
+        <div class="form-horizontal">
+          <%= render "goals/goal_form" %>
+			  </div>
+		  </div>
+	  </div>
   </div>
 </body>
 

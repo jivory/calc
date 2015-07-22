@@ -72,6 +72,10 @@ h1 {
 	padding-bottom: 4px;
 }
 
+.bottom-spacer {
+	padding-bottom: 15px;
+}
+
 .spacer {
 	padding-top: 15px;
 }
@@ -145,8 +149,13 @@ P.column {
 } 
 
 .blue-background {
-	background-color: #489dc1; 
-	border-color: #efefef;
+	background-color: #18a6d3; 
+	border-color: #607D8B;
+	color: #fff;
+}
+.blue-background:hover, .blue-background:active  {
+	background-color: #1896d3; 
+	border-color: #607D8B;
 }
 
 h2 .statement {
@@ -228,6 +237,11 @@ h2 .statement {
 	width: 100%;
 	height: 100%;
 }
- .page-auth .center-block .goal {
+.page-auth .center-block .goal {
     width: 40%;
-  }
+}
+
+.form_icons {
+   height: 15px;
+   width: 15px;
+}
