@@ -2,9 +2,9 @@
   <div class="form-group">
     <div class="col-sm-12 center-form">
       <div class="input-group center-form">
-        <div class= "btn-group-justified">
+        <div class= "">
         <% @sex.each do |name, result| %>
-          <%= f.radio_button(:sex, result, class: "col-lg-9") %> <%= name %>
+          <%= f.radio_button(:sex, result) %> <%= name %>
         <% end %>
       </div>
       </div>
@@ -15,7 +15,7 @@
       <div class="input-group">
         <%= f.text_field :goal_name, :autofocus => true, class:"form-control", placeholder: "goal name" %>
         <span class="input-group-addon">
-          <%= image_tag("tag_blue.png", class: "form_icons") %>
+          <%# image_tag("tag_blue.png", class: "form_icons") %>
         </span>
       </div>
     </div>
@@ -25,7 +25,7 @@
       <div class="input-group">
         <%= f.number_field :age, class:"form-control", placeholder: "age" %>
         <span class="input-group-addon">
-          <%= image_tag("arrow_fwd_blue.png", class: "form_icons") %>
+          <%# image_tag("arrow_fwd_blue.png", class: "form_icons") %>
         </span>
       </div>
     </div>
@@ -35,7 +35,7 @@
       <div class="input-group">
         <%= f.number_field :height, class:"form-control", placeholder: "height in inches" %>
         <span class="input-group-addon">
-          <%= image_tag("drop_down_blue.png", class: "form_icons") %>
+          <%# image_tag("drop_down_blue.png", class: "form_icons") %>
         </span>
       </div>
     </div>
@@ -45,7 +45,7 @@
       <div class="input-group">
         <%= f.number_field :weight, class:"form-control", placeholder: "weight" %>
         <span class="input-group-addon">
-          <%= image_tag("drop_down_blue.png", class: "form_icons") %>
+          <%# image_tag("drop_down_blue.png", class: "form_icons") %>
         </span>
       </div>
     </div>
@@ -55,7 +55,7 @@
       <div class="input-group">
         <%= f.number_field :desired_weight, class:"form-control", placeholder: "desired weight" %>
         <span class="input-group-addon">
-          <%= image_tag("target2_blue.png", class: "form_icons") %>
+          <%# image_tag("target2_blue.png", class: "form_icons") %>
         </span>
       </div>
     </div>
@@ -89,7 +89,7 @@
       <div class="input-group">
         <%= f.text_field :goal_name, :autofocus => true, class:"form-control", placeholder: "goal name" %>
         <span class="input-group-addon">
-          <%= image_tag("tag_blue.png", class: "form_icons") %>
+          <%# image_tag("tag_blue.png", class: "form_icons") %>
         </span>
       </div>
     </div>
