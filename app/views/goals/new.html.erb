@@ -6,8 +6,9 @@
       <div class="logo">
         <%= link_to image_tag("meal_types.png", size: "200x50"), root_path %>
       </div>
-      <!--div class= "row">
-      <div class= "col-md-9">-->
+      <div class="header-error blue bottom-spacer">
+        <%= render "layouts/errors_heading" %>
+      </div>
       <div class="login-box center-block">
         <div class="form-horizontal">
           <%= render "goals/goal_form" %>

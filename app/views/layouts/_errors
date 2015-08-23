@@ -1,0 +1,12 @@
+<% flash.each do |message_type, values| %>
+	<% if !values.empty? %>
+	<%= hidden_field_tag errors = [] %>
+	<%= hidden_field_tag errors << values %>
+	<%= hidden_field_tag errors.flatten! %>
+		<% errors.each do |message| %>
+			 <%= content_tag(:div, message, class: "") %> 
+		<% end  %>
+	<% end %>
+<% end %>
+
+

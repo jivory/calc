@@ -6,6 +6,9 @@
       <div class="logo">
         <%= link_to image_tag("meal_types.png", size: "200x50"), root_path %>
       </div>
+      <div class="header-error blue bottom-spacer">
+        <%= render "layouts/errors_heading" %>
+      </div>
       <div class="login-box center-block">
         <div class="form-horizontal">
           <%= form_for(@meal) do |f| %>
@@ -24,7 +27,7 @@
             <div class="form-group">
               <div class="col-sm-12">
                 <div class="input-group">
-									<%= f.date_field :day_of_meal, class:"form-control", value: params[:value] %>
+									<%= f.date_field :day_of_meal, class:"form-control", value: params[:value] || @value %>
 									<br> 
                   <span class="input-group-addon">
                   	<i class="fa fa-calendar">

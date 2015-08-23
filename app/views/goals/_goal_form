@@ -84,16 +84,6 @@
   <div class= "or spacer-2x">
     — OR —
   </div>
-  <div class="spacer form-group">
-    <div class="col-sm-12">
-      <div class="input-group">
-        <%= f.text_field :goal_name, :autofocus => true, class:"form-control", placeholder: "goal name" %>
-        <span class="input-group-addon">
-          <%# image_tag("tag_blue.png", class: "form_icons") %>
-        </span>
-      </div>
-    </div>
-  </div>
   <div class="form-group">
     <div class="col-sm-12">
       <div class="input-group">

@@ -54,7 +54,7 @@ include GoalsHelper
 
 	def new
 		@user = current_user
-		@goal = Goal.new
+		@goal = Goal.new(session[:goal])
 		@activity = { Sedentary: "sedentary", Mild: "mild", Moderate: "moderate", Heavy: "heavy", Extreme: "extreme" }
 		@sex = { Male: "male", Female: "female" }
 	end
@@ -75,7 +75,8 @@ include GoalsHelper
 				redirect_to goal_path(@goal)
 			end
 		else
-			flash[:error] = @goal.errors.full_messages.to_sentence
+			session[:goal] = params[:goal]
+			flash[:danger] = @goal.errors.full_messages
 			redirect_to new_goal_path
 		end
 	end

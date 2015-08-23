@@ -1,6 +1,9 @@
 <% provide(:title, 'My Goal') %>
 
 <body>
+	<div class= "left blue spacer"> 
+		<%= render "layouts/errors" %>
+	</div>
 	<div class= "center">
 		<div style="display:none">
 			<% @month.each do |day| %>
@@ -40,9 +43,9 @@
 				<% end %> 
 				<br>
 				<br>
-				<%= link_to "Edit", edit_goal_path, class: "bold" %> 
-				<%= link_to "History", goals_path, class: "bold" %> 
-				<%= link_to "New Goal", new_goal_path, class: "bold"  %>
+				<%= link_to "Edit", edit_goal_path, class: "btn blue-background btn-md btn-auth" %>
+				<%= link_to "History", goals_path, class: "btn blue-background btn-md btn-auth" %> 
+				<%= link_to "New Goal", new_goal_path, class: "btn blue-background btn-md btn-auth"  %>
 				<br>
 				<% if @goal.custom_calories.nil? %> 
 				<%= "Want to enter a custom calorie goal? " %>

@@ -1,0 +1,11 @@
+<% flash.each do |message_type, values| %>
+	<% if !values.empty? %>
+	<%= hidden_field_tag errors = [] %>
+	<%= hidden_field_tag errors << values %>
+	<%= hidden_field_tag errors.flatten! %>
+		<h2>
+			<%= "#{pluralize(errors.count,"error")} prohibited this from being saved:" %>
+		</h2>
+			<%= render "layouts/errors" %>
+	<% end %>
+<% end %>

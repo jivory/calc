@@ -4,9 +4,6 @@
       <div class="logo">
         <%= link_to image_tag("meal_types.png", size: "200x50"), root_path %>
       </div>
-       <div class="header-error">
-        <%= devise_error_messages! %>
-      </div>
         <div class="login-box center-block">
           <div class="form-horizontal">
             <p class="title">Forgot your password?</p>
@@ -20,7 +17,7 @@
                 </div>
               </div>
                 <%= button_tag(type: 'submit', class: "btn btn-custom-primary btn-lg btn-block btn-auth") do %>
-                <i class="fa fa-arrow-circle-o-right"></i> Send me password reset instructions
+                <i class="fa fa-arrow-circle-o-right"></i> Send password reset instructions
               <% end %>
             <% end %>
           <div class="links">

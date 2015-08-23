@@ -1,9 +1,10 @@
 class MealsController < ApplicationController
 include MealsHelper
 
-before_action :logged_in_user?, only: [:show]
+before_action :logged_in_user?
 before_action :set_meal, only: [:show]
-before_action :correct_user, only: [:show]
+before_action :save_params, only: [:new, :create]
+
 
   def show
     @meal = Meal.find_by(id: params[:id])
@@ -53,6 +54,8 @@ before_action :correct_user, only: [:show]
   	@meal = Meal.new
     @meal_type = { Meal: "meal", Drink: "drink", Snack: "snack", Drink: "drink", Dessert: "dessert" }
     @meal_time = { Breakfast: "breakfast", Lunch: "lunch", Dinner: "dinner", Other: "other" }
+    @value = @meal_params
+    #@meal_type = @meal_params[:meal]
   end
 
   def create
@@ -60,7 +63,8 @@ before_action :correct_user, only: [:show]
   	if @meal.save
   		redirect_to meals_path
   	else
-  		flash[:error] = @meal.errors.full_messages.to_sentence
+  		flash[:danger] = @meal.errors.full_messages
+
   		redirect_to new_meal_path
   	end
   	#1. meals should be valid. 2. if enter valid meal, send to index
@@ -80,7 +84,8 @@ before_action :correct_user, only: [:show]
   	if @redirect == "show" 
   	  redirect_to meal_path(@meal)
   	else 
-  	  redirect_to meals_path
+      flash[:danger] = @meal.errors.full_messages
+  	  redirect_to edit_meal_path
   	end
   	   #want to redirect back to show page if came from there  #want to redirect back to index page if came from there
 
@@ -105,12 +110,12 @@ private
   	params.require(:meal).permit!
   end
 
-  def correct_user
-  	redirect_to root_path unless @meal.user_id == current_user.id
-  end
-
   def logged_in_user?
   	redirect_to root_path unless current_user != nil 
+  end
+
+  def save_params
+    @meal_params = params[:id]
   end
 
 end

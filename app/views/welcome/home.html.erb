@@ -2,10 +2,14 @@
 <body>
 	<div class="wrapper full-page-wrapper page-auth page-login">
 		<div class= "container right spacer">
-				<%= link_to "Help", help_path, class: "btn btn-lg blue lgr " %>
-				<%= link_to "Sign Up", new_user_registration_path, class: "btn btn-custom-primary btn-lg btn-auth" %>
-				<%= link_to "Log In", new_user_session_path, class: "btn btn-custom-primary btn-lg btn-auth" %>
+			<%= link_to "Help", help_path, class: "btn btn-lg blue lgr " %>
+			<%= link_to "Sign Up", new_user_registration_path, class: "btn btn-custom-primary btn-lg btn-auth" %>
+			<%= link_to "Log In", new_user_session_path, class: "btn btn-custom-primary btn-lg btn-auth" %>
+			<div class= "left blue spacer"> 
+				<%= render "layouts/errors" %>
+			</div>
 		</div>
+		
 		<div class= "text-center spacer">
 			<div class= "title-logo">
 				<%= link_to image_tag("counti_logo_150_dark.png", size: "255x85"), root_path %>
